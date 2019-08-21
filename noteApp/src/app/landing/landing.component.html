@@ -1,0 +1,48 @@
+ 
+  <nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+      <div class="navbar-header">
+          <a routerLink="/" class="navbar-brand">Your Favorite NoteApp</a>
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#my-nav">
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+          </button>
+      </div>
+      <div class="collapse navbar-collapse" id="my-nav">
+          <ul class="nav navbar-nav navbar-right">
+              <li>
+                  <a routerLink="/login" class="btn btn-simple">Login</a>
+              </li>
+              <li>
+                  <a routerLink="/register" class="btn btn-simple" >Register</a>
+              </li>
+          </ul>
+      </div>
+
+  </div>
+  </nav>
+
+
+  <div class="container">
+    <div class="panel panel-primary">
+      <div class="panel-heading">{{pageTitle}}</div>
+      <div class="panel-body">
+        <div class="row">
+          <span class="img-responsive center-block logo-styles">
+            <span class="glyphicon glyphicon-book"> </span>
+          </span>
+          <div id="div1" class="shadow title-styles">
+            noteApp</div>
+            
+        </div>
+        <br />
+        <div class="row">
+          <div class="text-center text-styles">Something Something</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+

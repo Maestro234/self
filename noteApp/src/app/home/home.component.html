@@ -1,0 +1,60 @@
+
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+ 
+      <div class="navbar-header">
+        <a routerLink="/home" class="navbar-brand">Your Favorite NoteApp</a>
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#my-nav">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+      </div>
+      
+      <div class="collapse navbar-collapse" id="my-nav">
+        <ul class="nav navbar-nav navbar-right">
+          <li>
+            <a>Welcome, {{loggedInUser.userName}}</a>
+          </li>
+          <li>
+            <a routerLink="/notes" class="btn btn-simple">Notes
+              <span class="cart badge">{{note.length}}</span>
+            </a>
+          </li>
+          <li>
+            <a routerLink="/createNote" class="btn btn-simple" >Create New Note</a>
+          </li>
+          <li>
+            <a routerLink="" class="btn btn-simple" (click)="logout()" >Log out</a>
+          </li>
+        </ul>
+
+      </div>
+
+  </nav>
+
+
+<h1>
+  Your Dashboard
+</h1>
+
+
+      <div class="container-fluid">
+        <div class="cards">
+        <div *ngFor="let note of note">
+
+          <div class="panel hoverable">
+            
+            <div class="panel-body">
+                <h4>Topic: {{note.title}}</h4>
+                <h4>Last Modified on: {{note.dateCreated}}</h4>
+            </div>
+           
+          </div>
+
+        </div>
+      </div>
+    </div>
+      
+
+
+

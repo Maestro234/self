@@ -1,0 +1,64 @@
+<nav class="navbar navbar-inverse navbar-default">
+ 
+  <div class="navbar-header">
+    <a routerLink="/" class="navbar-brand">Your Favorite NoteApp</a>
+    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#my-nav">
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </button>
+  </div>
+  
+  <div class="collapse navbar-collapse" id="my-nav">
+    <ul class="nav navbar-nav navbar-right">
+      <li>
+        <a routerLink="/login" class="btn btn-simple">Login</a>
+      </li>
+      <!-- create these -->
+      <li>
+        <a routerLink="/register" class="btn btn-simple" >Register</a>
+      </li>
+      <!-- create these -->
+      <li>
+        <a routerLink="/search" class="btn btn-simple">Looking for something ?</a>
+      </li>
+    </ul>
+  </div>
+
+</nav>
+
+
+
+
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-sm-4 col-sm-offset-4">
+
+      <!-- <div class="panel panel-primary">
+        <div class="panel-heading">Login</div>
+        <div class="panel-body"> -->
+
+          <form #loginForm="ngForm" (ngSubmit)="onLogin()">
+
+            <mat-form-field appearance="fill" class="example-full-width ">
+              <mat-label>Username</mat-label>
+              <input required name="user.username" [(ngModel)]="user.username" matInput placeholder="Enter your username" type="text">
+            </mat-form-field>
+
+            <mat-form-field appearance="fill" class="example-full-width ">
+              <mat-label>Password</mat-label>
+              <input required name="user.password" [(ngModel)]="user.password" matInput placeholder="Enter your password" type="password">
+            </mat-form-field>
+
+            <div class="form-group">
+              <button class="btn btn-primary" type="submit">Log in</button>
+            </div>
+
+          </form>
+
+        <!--</div>--><!--Body ends here-->
+      <!--</div>--><!--panel ends here-->
+    </div>
+  </div>
+</div>

@@ -1,0 +1,46 @@
+<nav class="navbar navbar-inverse navbar-fixed-top">
+
+  <div class="navbar-header">
+    <a routerLink="/home" class="navbar-brand">Your Favorite NoteApp</a>
+    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#my-nav">
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </button>
+  </div>
+
+  <div class="collapse navbar-collapse" id="my-nav">
+    <ul class="nav navbar-nav navbar-right">
+      <li>
+        <a routerLink="/notes" class="btn btn-simple">Dashboard</a>
+      </li>
+      <li>
+        <a routerLink="" class="btn btn-simple" (click)="logout">Log out
+        </a>
+      </li>
+    </ul>
+  </div>
+
+</nav>
+
+
+<mat-accordion *ngFor="let note of noteList">
+
+  <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        <h3>{{note.title}}</h3>
+      </mat-panel-title>
+      <mat-panel-description>
+        Document Id Number: {{note.note_id}}
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+    <div class="col-md-10">
+      <p>content:</p>
+      <p>{{note.message}}</p>
+      <p>last modified on: {{note.dateCreated}}</p>
+    </div>
+    <button class="col-md-1 btn btn-danger hoverable">remove</button>
+  </mat-expansion-panel>
+
+</mat-accordion>
