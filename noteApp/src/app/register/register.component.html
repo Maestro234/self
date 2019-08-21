@@ -1,36 +1,89 @@
 <nav class="navbar navbar-inverse">
   <div class="container-fluid">
-      <div class="navbar-header">
-          <a routerLink="/" class="navbar-brand">Your Favorite NoteApp</a>
-          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#my-nav">
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-          </button>
-      </div>
-      <div class="collapse navbar-collapse" id="my-nav">
-          <ul class="nav navbar-nav navbar-right">
-              <li>
-                  <a routerLink="/login" class="btn btn-simple">Login</a>
-              </li>
-              <li>
-                  <a routerLink="/register" class="btn btn-simple" >Register</a>
-              </li>
-          </ul>
-      </div>
+    <div class="navbar-header">
+      <a routerLink="/" class="navbar-brand">Your Favorite NoteApp</a>
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#my-nav">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+    <div class="collapse navbar-collapse" id="my-nav">
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+          <a routerLink="/login" class="btn btn-simple">Login</a>
+        </li>
+        <li>
+          <a routerLink="/register" class="btn btn-simple">Register</a>
+        </li>
+      </ul>
+    </div>
 
   </div>
-  </nav>
+</nav>
 
 
 
-<div class="container-fluid">
+
+
+
+
+<div class="col-md-12">
+  <div class="modal-dialog" style="margin-bottom:0">
+    <div class="modal-content">
+      <div class="panel-heading">
+        <h3 class="panel-title">Register</h3>
+      </div>
+      <div class="panel-body">
+        <form #loginForm="ngForm" (ngSubmit)="onLogin()">
+
+          <mat-form-field appearance="fill" class="example-full-width ">
+            <mat-label>Username</mat-label>
+            <input required name="user.id" [(ngModel)]="user.name" matInput type="text" placeholder="Enter a unique username">
+          </mat-form-field>
+
+          <mat-form-field appearance="fill" class="example-full-width ">
+            <mat-label>Email</mat-label>
+            <input required name="user.email" [(ngModel)]="user.email" matInput placeholder="Enter your secret email" type="text">
+          </mat-form-field>
+
+          <mat-form-field appearance="fill" class="example-full-width ">
+            <mat-label>Password</mat-label>
+            <input required name="user.password" [(ngModel)]="user.password" matInput placeholder="Enter an awesome unhackable your password"
+              type="password">
+          </mat-form-field>
+
+          <mat-form-field appearance="fill" class="example-full-width ">
+            <mat-label>Re-enter Password</mat-label>
+            <input required name="user.password" [(ngModel)]="user.password" matInput placeholder="Enter an awesome unhackable your password"
+              type="password">
+          </mat-form-field>
+
+          <!-- <mat-form-field appearance="fill" class="example-full-width ">
+                    <mat-label></mat-label>
+                    <input required name="user.password" [(ngModel)]="user.password" matInput placeholder="Enter an awesome unhackable your password" type="password">
+                  </mat-form-field> -->
+
+          <div class="form-group">
+            <button class="btn btn-change btn-md" type="submit">Register</button>
+          </div>
+
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+<!-- <div class="container-fluid">
   <div class="row">
     <div class="col-sm-4 col-sm-offset-4">
 
-      <!-- <div class="panel panel-primary">
-        <div class="panel-heading">Login</div>
-        <div class="panel-body"> -->
+      <div class="panel panel-secondary">
+        <div class="panel-heading"><h3>Register</h3></div>
+        <div class="panel-body">
 
           <form #loginForm="ngForm" (ngSubmit)="onLogin()">
 
@@ -52,23 +105,21 @@
             <mat-form-field appearance="fill" class="example-full-width ">
               <mat-label>Re-enter Password</mat-label>
               <input required name="user.password" [(ngModel)]="user.password" matInput placeholder="Enter an awesome unhackable your password" type="password">
-            </mat-form-field>
+            </mat-form-field> -->
 
-            
-
-            <!-- <mat-form-field appearance="fill" class="example-full-width ">
+<!-- <mat-form-field appearance="fill" class="example-full-width ">
               <mat-label></mat-label>
               <input required name="user.password" [(ngModel)]="user.password" matInput placeholder="Enter an awesome unhackable your password" type="password">
             </mat-form-field> -->
 
-            <div class="form-group">
+<!-- <div class="form-group">
               <button class="btn btn-change btn-md" type="submit">Register</button>
             </div>
 
           </form>
 
-        <!--</div>--><!--Body ends here-->
-      <!--</div>--><!--panel ends here-->
+        </div>
+      </div>
     </div>
   </div>
-</div>
+</div> -->
