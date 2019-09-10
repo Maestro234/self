@@ -1,4 +1,4 @@
-<nav class="navbar navbar-inverse navbar-fixed-top">
+<nav class="navbar navbar-inverse navbar">
 
   <div class="navbar-header">
     <a routerLink="/home" class="navbar-brand">Your Favorite NoteApp</a>
@@ -12,7 +12,7 @@
   <div class="collapse navbar-collapse" id="my-nav">
     <ul class="nav navbar-nav navbar-right">
       <li>
-        <a routerLink="/notes" class="btn btn-simple">Dashboard</a>
+        <a routerLink="/home" class="btn btn-simple">Dashboard</a>
       </li>
       <li>
         <a routerLink="" class="btn btn-simple" (click)="logout">Log out
@@ -24,23 +24,59 @@
 </nav>
 
 
-<mat-accordion *ngFor="let note of noteList">
+<!-- <mat-accordion *ngFor="let file of fileList">
 
   <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
     <mat-expansion-panel-header>
       <mat-panel-title>
-        <h3>{{note.title}}</h3>
+        <h3>{{file.filename}}</h3>
       </mat-panel-title>
       <mat-panel-description>
-        Document Id Number: {{note.note_id}}
+        Document Id Number: {{file.fileId}}
       </mat-panel-description>
     </mat-expansion-panel-header>
     <div class="col-md-10">
-      <p>content:</p>
-      <p>{{note.message}}</p>
-      <p>last modified on: {{note.dateCreated}}</p>
+      <p>file type:</p>
+      <p>{{file.filetype}}</p>
+      <p>last modified on: </p>
     </div>
     <button class="col-md-1 btn btn-danger hoverable">remove</button>
   </mat-expansion-panel>
 
-</mat-accordion>
+</mat-accordion> -->
+
+
+<!-- <mat-form-field>
+  <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+</mat-form-field> -->
+
+  <table mat-table [dataSource]="fileList" class="mat-elevation-z8">
+
+    <!-- FileId Column -->
+    <ng-container matColumnDef="fileId">
+      <th mat-header-cell *matHeaderCellDef> No. </th>
+      <td mat-cell *matCellDef="let file"> {{file.fileId}} </td>
+    </ng-container>
+
+    <!-- Filename Column -->
+    <ng-container matColumnDef="filename">
+      <th mat-header-cell *matHeaderCellDef> Filename </th>
+      <td mat-cell *matCellDef="let file"> {{file.filename}} </td>
+    </ng-container>
+
+    <!-- Filetype Column -->
+    <ng-container matColumnDef="filetype">
+      <th mat-header-cell *matHeaderCellDef> File Type </th>
+      <td mat-cell *matCellDef="let file"> {{file.filetype}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="download">
+      <th mat-header-cell *matHeaderCellDef> Download </th>
+      <td mat-cell *matCellDef="let file">
+        <a href="http://localhost:8022/noteappApi/downloadFile/{{file.fileId}}">click here</a>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>

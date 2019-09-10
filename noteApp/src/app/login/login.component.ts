@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { LoginService } from './login.service';
 import { User } from '../shared/user';
-import { FormGroup } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
 @Component({
@@ -12,29 +12,44 @@ import { Router } from '@angular/router';
 export class LoginComponent implements OnInit {
   user: User ;
   errorMsg: string;
+  loginForm: FormGroup;
+  logging: boolean =false;
 
-  constructor(private router: Router, private loginService: LoginService) { }
+  constructor(private formBuilder: FormBuilder, private router: Router, private loginService: LoginService) { }
 
   ngOnInit() {
     this.user = new User();
+    this.createForm();
   }
 
+  createForm(){
+    this.loginForm = this.formBuilder.group({
+      username: [this.user.username, [Validators.required]],
+      password: [this.user.password, [Validators.required]]
+    })
+  }
+  
   onLogin() {
-    this.loginService.login(this.user).subscribe(
-      response => {
-        //return the user details from backend if successful
-        this.user = response;
-         //create a variable in session storage called user and store the user details on it
-        sessionStorage.setItem("user", JSON.stringify(this.user));
-        //route the user after successful login to the user's home page
-        this.router.navigate(['/home']);
-      },
-      error => {
-        this.errorMsg = error;
-      },
-      () => {
-        console.log("fetch user completed")
-      }
+    this.logging = true;
+    this.user = this.loginForm.value as User;
+    this.loginService.login(this.user)
+      .subscribe(
+          response => {
+            this.user = response;
+            console.log(this.user)
+            //create a variable in session storage called user and store the user details on it
+            sessionStorage.setItem("user", JSON.stringify(this.user));
+            this.logging = false;
+            //route the user after successful login to the user's home page
+            this.router.navigate(['/home']);
+           },
+          error => {
+            this.logging = false;
+            this.errorMsg = error;
+          },
+          () => {
+            console.log("user fetch completed")
+          }
     )
 
     console.log(this.user);

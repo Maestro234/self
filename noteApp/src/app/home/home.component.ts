@@ -3,6 +3,8 @@ import { Note } from '../shared/note';
 import { UserHomeServiceService } from './user-home-service.service';
 import { User } from '../shared/user';
 import { Router } from '@angular/router';
+import { DBFile } from '../shared/dbfile';
+import { UserFiles } from '../shared/user-files';
 
 @Component({
   selector: 'app-home',
@@ -13,7 +15,10 @@ export class HomeComponent implements OnInit {
 
   loggedInUser: User;
   note: Note[] = [];
+  fileList: UserFiles[] =[];
   errMsg: string;
+  sFile: UserFiles[]=[];
+  response: any;
 
   constructor(private router: Router,private userHomeService: UserHomeServiceService) { }
 
@@ -21,19 +26,36 @@ export class HomeComponent implements OnInit {
    //get the logged in user from session storage 
     this.loggedInUser = JSON.parse(sessionStorage.getItem("user"));
     //pass the user id to fetch the users notes from backend
-    this.userHomeService.getUserNotes(this.loggedInUser.user_id).subscribe(
-      notes => {
-        this.note= notes;
+    this.userHomeService.getUserFiles(this.loggedInUser.username).subscribe(
+      files => {
+        this.fileList= files;
         //create a var in session storage and store the user's notes 
-        sessionStorage.setItem("note", JSON.stringify(this.note));
+        sessionStorage.setItem("files", JSON.stringify(this.fileList));
       },
       error => {
         this.errMsg = error;
       },
       () => {
-        console.log("Notes fetch completed");
+        console.log("file fetch completed");
       }
     )
+  }
+
+
+  searchFilter(criteria: string){
+    if(criteria.length > 0){
+      console.log(criteria)
+      this.userHomeService.getAllFiles(criteria)
+      .subscribe(
+        allFiles => {
+          this.sFile = allFiles;
+          console.log(allFiles);
+        },
+        error => {
+          this.errMsg = error;
+        }
+      )
+    }
   }
 
   logout() {

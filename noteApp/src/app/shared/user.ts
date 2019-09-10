@@ -6,6 +6,4 @@ export class User {
     username: string;
     password: string;
     email: string;
-    notes: Array<Note>;
-    friendIds: Array<number>;
 }

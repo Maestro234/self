@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import {MatInputModule,MatOptionModule,MatButtonModule, MatSelectModule,MatExpansionModule, MatIconModule, MatStepperModule, MatStepperIntl} from '@angular/material';
+import {MatInputModule,MatTableModule,MatOptionModule,MatButtonModule, MatSelectModule,MatExpansionModule, MatIconModule, MatStepperModule, MatStepperIntl} from '@angular/material';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -14,6 +14,9 @@ import { NotesComponent } from './notes/notes.component';
 import { CreateNoteComponent } from './create-note/create-note.component';
 import { RegisterComponent } from './register/register.component';
 import { LandingComponent } from './landing/landing.component';
+import { UploadComponent } from './upload/upload.component';
+import { FileUploadModule } from 'ng2-file-upload';
+import {MatRadioModule} from '@angular/material/radio';
 
 @NgModule({
   declarations: [
@@ -24,8 +27,9 @@ import { LandingComponent } from './landing/landing.component';
     NotesComponent,
     CreateNoteComponent,
     RegisterComponent,
-    LandingComponent
-  ],
+    LandingComponent,
+    UploadComponent
+    ],
   imports: [
     BrowserModule,
     FormsModule,
@@ -33,7 +37,11 @@ import { LandingComponent } from './landing/landing.component';
     HttpClientModule,
     AppRoutingModule,
     MatInputModule,MatOptionModule, MatSelectModule, MatIconModule,MatExpansionModule,MatStepperModule,MatButtonModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    FileUploadModule,
+    ReactiveFormsModule,
+    MatTableModule, 
+    MatRadioModule
   ],
   providers: [LoginService],
   bootstrap: [AppComponent]

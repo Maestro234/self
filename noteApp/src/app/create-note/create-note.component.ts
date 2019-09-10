@@ -8,7 +8,7 @@ import { Subject } from '../shared/subject';
 // import { FormGroup, FormBuilder, Validators } from '../../../node_modules/@angular/forms';
 
 @Component({
-  selector: 'app-create-note',
+  selector: 'create-note',
   templateUrl: './create-note.component.html',
   styleUrls: ['./create-note.component.css']
 })

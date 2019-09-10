@@ -23,11 +23,6 @@
 </nav>
 
 
-
-
-
-
-
 <div class="col-md-12">
   <div class="modal-dialog" style="margin-bottom:0">
     <div class="modal-content">
@@ -35,40 +30,50 @@
         <h3 class="panel-title">Register</h3>
       </div>
       <div class="panel-body">
-        <form #loginForm="ngForm" (ngSubmit)="onLogin()">
+        <form [formGroup]="registerForm" (ngSubmit)="onLogin()">
 
-          <mat-form-field appearance="fill" class="example-full-width ">
+          <mat-form-field appearance="fill" class="example-full-width form-group">
             <mat-label>Username</mat-label>
-            <input required name="user.id" [(ngModel)]="user.name" matInput type="text" placeholder="Enter a unique username">
+            <input formControlName="username" id="username" matInput type="text" placeholder="Enter a unique username">
+            <div *ngIf="registerForm.controls.username.dirty && registerForm.controls.username.errors">
+              <div class="text-danger">Username cannot have numbers</div>
+            </div>
           </mat-form-field>
 
           <mat-form-field appearance="fill" class="example-full-width ">
             <mat-label>Email</mat-label>
-            <input required name="user.email" [(ngModel)]="user.email" matInput placeholder="Enter your secret email" type="text">
+            <input formControlName="email" id="email" matInput placeholder="Enter your secret email" type="email">
+            <div *ngIf="registerForm.controls.email.dirty && registerForm.controls.email.errors">
+              <div class="text-danger">Enter a valid email</div>
+            </div>
           </mat-form-field>
 
           <mat-form-field appearance="fill" class="example-full-width ">
             <mat-label>Password</mat-label>
-            <input required name="user.password" [(ngModel)]="user.password" matInput placeholder="Enter an awesome unhackable your password"
-              type="password">
+            <input formControlName="password" id="password" matInput placeholder="Enter an awesome unhackable your password" type="password"
+              id="password">
+            <div *ngIf="registerForm.controls.password.dirty && registerForm.controls.password.errors">
+              <div class="text-danger">password must must at least 6 characters</div>
+            </div>
           </mat-form-field>
 
           <mat-form-field appearance="fill" class="example-full-width ">
             <mat-label>Re-enter Password</mat-label>
-            <input required name="user.password" [(ngModel)]="user.password" matInput placeholder="Enter an awesome unhackable your password"
-              type="password">
+            <input formControlName="confirmPassword" id="confirmPassword" matInput placeholder="Enter an awesome unhackable your password"
+              type="password" id="confirmPassword" validateEqual="user.password">
+            <div *ngIf="registerForm.controls.confirmPassword.dirty && registerForm.controls.password.value != registerForm.controls.confirmPassword.value">
+              <div class="text-danger">Passwords do not match!!</div>
+            </div>
           </mat-form-field>
 
-          <!-- <mat-form-field appearance="fill" class="example-full-width ">
-                    <mat-label></mat-label>
-                    <input required name="user.password" [(ngModel)]="user.password" matInput placeholder="Enter an awesome unhackable your password" type="password">
-                  </mat-form-field> -->
-
           <div class="form-group">
-            <button class="btn btn-change btn-md" type="submit">Register</button>
+            <button [disabled]="!registerForm.valid" class="btn btn-info" type="submit">Register</button>
+            <button [disabled]="registerForm.pristine" class="btn btn-change" type="reset">Reset</button>
           </div>
 
         </form>
+        <h5>{{successMessage}}</h5>
+        <h5>{{errorMessage}}</h5>
       </div>
     </div>
   </div>

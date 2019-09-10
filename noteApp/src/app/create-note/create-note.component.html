@@ -27,14 +27,11 @@
 
 </nav>
 
-<div>
-  <h2>Create a new note</h2>
-</div>
 
 <div class="alert alert-success">
-  <h4>
-    Please do the follwoing before creating the note
-  </h4>
+  <h5>
+    Please do the following before creating the note
+  </h5>
 </div>
 
 
@@ -46,12 +43,53 @@
 </div>
 
 
-<div layout-align="center center">
+
+
+
+
+<div class="col-md-12">
+  <div class="modal-dialog" style="margin-bottom:0">
+    <div class="modal-content">
+      <div class="panel-heading">
+        <h3 class="panel-title">Create your note</h3>
+      </div>
+      <div class="panel-body">
+        <form class="example-form">
+
+          <mat-form-field class="example-full-width ">
+            <input name="subject.subject" [(ngModel)]="subject.subject" matInput placeholder="Subject" #title maxlength="50">
+            <!-- <mat-hint align="end">{{subject.value.length}} / 50</mat-hint> -->
+          </mat-form-field>
+
+          <mat-form-field class="example-full-width">
+            <textarea matInput name="note.question" [(ngModel)]="note.question" placeholder="Enter your question here"></textarea>
+          </mat-form-field>
+
+          <mat-form-field class="example-full-width">
+            <textarea matInput matTextareaAutosize name="note.answer" [(ngModel)]="note.answer" placeholder="Enter your answer here"></textarea>
+          </mat-form-field>
+          <span>Created on: {{dateCreated | date:"MM-dd-yyyy"}}</span>
+
+          <br>
+          <br>
+          <div class="form-group">
+            <button mat-button class="btn btn-simple" (click)="addNew()">Add More</button>
+            <button mat-button class="btn btn-primary btn-md" type="submit" (click)="done()">Done</button>
+          </div>
+
+        </form>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- <div layout-align="center center">
 <form class="example-form">
 
   <mat-form-field class="example-full-width ">
     <input name="subject.subject" [(ngModel)]="subject.subject" matInput placeholder="Subject" #title maxlength="50">
-    <!-- <mat-hint align="end">{{subject.value.length}} / 50</mat-hint> -->
+    <mat-hint align="end">{{subject.value.length}} / 50</mat-hint>
   </mat-form-field>
 
   <mat-form-field class="example-full-width">
@@ -72,7 +110,7 @@
 
 </form>
 
-</div>
+</div> -->
 
 
 

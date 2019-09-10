@@ -1,0 +1,13 @@
+/* h4, span{
+    width: 50%;
+    display: inline-block;
+}
+
+.panel-body{
+    width:100%;
+} */
+
+.mat-form-field {
+    font-size: 14px;
+    width: 100%;
+  }

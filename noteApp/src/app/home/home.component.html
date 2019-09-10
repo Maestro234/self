@@ -1,60 +1,66 @@
+<nav class="navbar navbar-inverse navbar">
 
-    <nav class="navbar navbar-inverse navbar-fixed-top">
- 
-      <div class="navbar-header">
-        <a routerLink="/home" class="navbar-brand">Your Favorite NoteApp</a>
-        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#my-nav">
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </button>
-      </div>
-      
-      <div class="collapse navbar-collapse" id="my-nav">
-        <ul class="nav navbar-nav navbar-right">
-          <li>
-            <a>Welcome, {{loggedInUser.userName}}</a>
-          </li>
-          <li>
-            <a routerLink="/notes" class="btn btn-simple">Notes
-              <span class="cart badge">{{note.length}}</span>
-            </a>
-          </li>
-          <li>
-            <a routerLink="/createNote" class="btn btn-simple" >Create New Note</a>
-          </li>
-          <li>
-            <a routerLink="" class="btn btn-simple" (click)="logout()" >Log out</a>
-          </li>
-        </ul>
+  <div class="navbar-header">
+    <a routerLink="/home" class="navbar-brand">Your Favorite NoteApp</a>
+    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#my-nav">
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </button>
+  </div>
 
-      </div>
+  <div class="collapse navbar-collapse" id="my-nav">
+    <ul class="nav navbar-nav navbar-right">
+      <li>
+        <a>Welcome,
+          <b>{{loggedInUser.username}}</b>
+        </a>
+      </li>
+      <li>
+        <a routerLink="/files" class="btn btn-simple">Notes
+          <span class="cart badge">{{fileList.length}}</span>
+        </a>
+      </li>
+      <!-- <li>
+        <a routerLink="/createNote" class="btn btn-simple">Create New Note</a>
+      </li> -->
+      <li>
+        <a routerLink="/upload" class="btn btn-simple">Upload</a>
+      </li>
+      <li>
+        <a routerLink="" class="btn btn-simple" (click)="logout()">Log out</a>
+      </li>
+    </ul>
+  </div>
 
-  </nav>
+</nav>
 
 
 <h1>
   Your Dashboard
 </h1>
 
+<mat-form-field>
+  <input matInput (keyup)="searchFilter($event.target.value)" placeholder="Search for files">
+</mat-form-field>
+<!-- <h1>
+  Search for files - Add friends
+</h1> -->
 
-      <div class="container-fluid">
-        <div class="cards">
-        <div *ngFor="let note of note">
+<div class="cards">
+  <div class="cards">
+    <div *ngFor="let file of sFile">
 
-          <div class="panel hoverable">
-            
-            <div class="panel-body">
-                <h4>Topic: {{note.title}}</h4>
-                <h4>Last Modified on: {{note.dateCreated}}</h4>
-            </div>
-           
-          </div>
-
+      <div class="panel hoverable">
+        <div class="panel-body">
+          <h4>
+            <strong>file Name: </strong>{{file.filename}}
+            <a href="http://localhost:8022/noteappApi/downloadFile/{{file.fileId}}">click to download file</a>
+          </h4>
+          <h4>Last Modified on: {{note.dateCreated}}</h4>
         </div>
       </div>
+
     </div>
-      
-
-
-
+  </div>
+</div>

@@ -1,0 +1,76 @@
+<nav class="navbar navbar-inverse navbar">
+
+  <div class="navbar-header">
+    <a routerLink="/home" class="navbar-brand">Your Favorite NoteApp</a>
+    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#my-nav">
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </button>
+  </div>
+
+  <div class="collapse navbar-collapse" id="my-nav">
+    <ul class="nav navbar-nav navbar-right">
+      <li>
+        <a>Welcome,
+          <b>{{loggedInUser.username}}</b>
+        </a>
+      </li>
+      <li>
+        <a routerLink="/files" class="btn btn-simple">Files
+          <span class="cart badge">{{fileList.length}}</span>
+        </a>
+      </li>
+      <!-- <li>
+        <a routerLink="/createNote" class="btn btn-simple">Create New Note</a>
+      </li> -->
+      <li>
+        <a routerLink="" class="btn btn-simple" (click)="logout()">Log out</a>
+      </li>
+    </ul>
+
+  </div>
+
+</nav>
+
+<div class="col-md-12">
+  <div class="modal-dialog" style="margin-bottom:0">
+    <div class="modal-content">
+      <div class="panel-heading">
+        <h3 class="panel-title">Create your note</h3>
+      </div>
+      <div class="panel-body">
+        <form class="example-form">
+
+          <mat-form-field class="example-full-width">
+            <input type="text" matInput name=uploadrequest.fileName [(ngModel)]="uploadrequest.fileName" placeholder="Enter the file name">
+          </mat-form-field>
+
+          <input type="file" (change)="getFile($event)">
+          
+          <br>
+          <mat-radio-group aria-label="Select an option" class="example-radio-group" name="private" [(ngModel)]="private">
+            <mat-label>Do you want to make this private ? </mat-label> &nbsp;&nbsp;
+            <mat-radio-button [value]="true">Yes</mat-radio-button>&nbsp;&nbsp;
+            <mat-radio-button [value]="false">No</mat-radio-button>
+            {{private}}
+          </mat-radio-group>
+
+          <br>
+          <br>
+          <div class="form-group">
+            <button mat-button class="btn btn-primary btn-md" type="submit" (click)="upload()">Upload</button>
+          </div>
+
+          <div *ngIf="success.downloadUri != null && success.downloadUri !=''" class="alert alert-success" role="alert">
+            <strong>file uploaded successfully:: {{success.fileName}}</strong>
+            <a href="">{{success.downloadUri}}</a>
+          </div>
+          <div *ngIf="!!err" class="alert alert-danger" role="alert">
+            <strong>failed to upload file</strong>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
